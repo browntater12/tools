@@ -1,0 +1,57 @@
+{% extends "layout.html" %}
+
+
+{% block content %}
+<h1>Direct Mail in Repair</h1>
+<br>
+<h2 style="text-align:center">APPLE</h2>
+<table class="table table-hover table-striped">
+  {% for row in reader %}
+    {% if username %}
+      {% if 'Part' in row[0] %}
+        <thead>
+          <tr>
+            <th scope="col"><input>{{ row[0][3] }}</input></th>
+            <th scope="col"><input placeholder="{{ row[1] }}"></input></th>
+            <th scope="col"><input placeholder="{{ row[2] }}"></input></th>
+            <th scope="col"><input placeholder="{{ row[2] }}"></input></th>
+          </tr>
+          
+        </thead>
+      {% else %}
+        <tbody>
+          <tr>
+            <td>#</th>
+            <td>{{ row[0] }}</td>
+            <td>{{ row[1] }}</td>
+            <td>{{ row[2] }}</td>
+          </tr>
+        </tbody>
+      {% endif %}
+    {% else %}
+    {% endif %}
+</table>
+    <table class="table table-hover table-striped" style="table-layout: fixed;">
+      {% if loop.first %}
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Part Name</th>
+            <th scope="col">Part Source</th>
+            <th scope="col">Handle</th>
+          </tr>
+        </thead>
+      </div>
+      {% else %}
+        <tbody>
+          <tr>
+            <th scope="row">#</th>
+            <td>{{ row[0] }}</td>
+            <td>{{ row[1] }}</td>
+            <td>{{ row[2] }}</td>
+          </tr>
+        </tbody>
+      {% endif %}
+  </table>
+  {% endfor %} 
+{% endblock %}

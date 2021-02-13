@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tool List</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}"/>
+</head>
+<body >
+
+    <div>
+        <nav class="navbar navbar-light bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/">
+                    <img src="/static/images/download.png" alt="" width="30" height="24" class="d-inline-block align-top">
+                    Product Engineering
+                </a>
+                <form method="POST" action="#">
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Backdrop">Edit</button>
+                </div>
+                <div class="modal fade" id="Backdrop" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">Edit Documents</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row g-3 align-items-center">
+                                <div class="col-auto">
+                                  <label for="inputPassword" class="col-form-label">Password</label>
+                                </div>
+                                <form method="POST">
+                                <div class="col-auto">
+                                  <input type="password" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline" name='password'>
+                                </div>
+                                <div class="col-auto">
+                                  <span id="passwordHelpInline" class="form-text">
+                                    Must be 8-20 crackers long.
+                                  </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                          <button type="button" class="btn btn-primary" action="#">Submit</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+            </div>
+        </nav>
+<!--NAVBAR-->
+    <div class="container-fluid">
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link {% if direct %}active{% endif %}" href="/direct/">Direct Mail in Repair</a>
+                {% if direct %}
+                <nav class="nav">
+                    <a class="nav-link active" href="#">AT&T</a>
+                    <a class="nav-link" href="ubif">UBIF</a>
+                    <a class="nav-link" href="#">SPR-TMO</a>
+                </nav>
+                {% endif %}
+            </li>
+            <li class="nav-item">
+              <a class="nav-link {% if inStore %}active{% endif %}" href="/inStore/">In Store Repair</a>
+              {% if inStore %}
+              <nav class="nav">
+                  <a class="nav-link active" href="#">AT&T</a>
+                  <a class="nav-link" href="#">UBIF</a>
+                  <a class="nav-link" href="#">SPR-TMO</a>
+              </nav>
+              {% endif %}
+          </li>
+            <li class="nav-item">
+                <a class="nav-link {% if remote %}active{% endif %}" href="/remote/">Remote Repair</a>
+                {% if remote %}
+                <nav class="nav">
+                    <a class="nav-link active" href="#">UBIF</a>
+                    <a class="nav-link" href="#">3P</a>
+                </nav>
+                {% endif %}
+            </li>
+            <li class="nav-item">
+              <a class="nav-link {% if doa %}active{% endif %}" href="/doa/">DOA Evaluation Depot</a>
+              {% if doa %}
+              <nav class="nav">
+                  <a class="nav-link active" href="#">Unknown</a>
+              </nav>
+              {% endif %}
+          </li>
+    
+        </ul>
+    </div>
+    <div class="container" style="min-height:100%; width:80%">
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            {% for message in messages %}
+              <div class="alert alert-warning alert-dismissible" role="alert">
+              <button type="button" class="close" data-dismiss="alert" aria-label="close"><span aria-hidden="true">&times;</span></button>
+                {{message}}
+              </div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}   
+    </div>
+
+<!--FLASH-->
+  {% with messages = get_flashed_messages() %}
+  {% endwith %}
+
+{% block content %}
+
+{% endblock %}
+
+<!--FOOTER-->
+<div class="position-absolute bottom-0 start-50 translate-middle-x">
+  <footer id="foot">
+      <p>Copyright &copy;2021-2022. Asurion. All rights reserved.</p>
+  </footer>
+</div>
+
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+</body>
+</html>
